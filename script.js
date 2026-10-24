@@ -10,6 +10,7 @@
     ["geschichte", "nav.history"],
     ["termine", "nav.dates"],
     ["videos", "nav.videos"],
+    ["kontakt", "nav.contact"],
   ];
 
   const page = document.body.dataset.page || "index";
@@ -30,7 +31,18 @@
     const links = NAV.map(([slug, key]) =>
       `<a href="${slug}.html" data-nav data-i18n="${key}"${slug === page ? ' aria-current="page"' : ""}></a>`).join("");
 
-    document.getElementById("site-header").outerHTML = `
+    const header = document.getElementById("site-header");
+    const footer = document.getElementById("site-footer");
+
+    // Jukebox-Knopf auf jeder Seite (außer in der Jukebox selbst)
+    if (page !== "jukebox") {
+      document.body.insertAdjacentHTML("beforeend",
+        `<button type="button" class="jb-fab" id="jb-fab" data-i18n-label="jb.open"><span class="jb-fab-note" aria-hidden="true">♫</span><span data-i18n="jb.fab"></span></button>`);
+      document.getElementById("jb-fab").addEventListener("click", openJukebox);
+    }
+
+    if (!header) return;
+    header.outerHTML = `
       <header class="site-header">
         <a class="logo" href="index.html" data-nav>Yalta Club</a>
         <nav class="nav">${links}</nav>
@@ -39,7 +51,7 @@
         </div>
       </header>`;
 
-    document.getElementById("site-footer").outerHTML = `
+    footer.outerHTML = `
       <footer class="site-footer">
         <p class="footer-band">Yalta Club</p>
         <p data-i18n="footer.welcome"></p>
@@ -54,6 +66,14 @@
       b.addEventListener("click", () => setLang(b.dataset.lang)));
   }
 
+  // Die Jukebox läuft in einem eigenen kleinen Fenster weiter, während man auf der Seite stöbert.
+  function openJukebox() {
+    const url = `jukebox.html?lang=${lang}`;
+    const win = window.open(url, "yc-jukebox", "width=460,height=900");
+    if (win) win.focus();
+    else location.href = url;
+  }
+
   function setLang(next) {
     lang = next;
     const t = I18N[lang];
@@ -62,6 +82,10 @@
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll("[data-i18n-label]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-label");
+      if (t[key] !== undefined) { el.setAttribute("aria-label", t[key]); el.title = t[key]; }
     });
     document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
       const key = el.getAttribute("data-i18n-alt");
@@ -88,6 +112,13 @@
       a.textContent = t["videos.onYoutube"];
     });
 
+    const mailBtn = document.getElementById("contact-mail-btn");
+    if (mailBtn && CONTACT_EMAIL) {
+      document.querySelector(".contact-mail").innerHTML = `<a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>`;
+      mailBtn.href = `mailto:${CONTACT_EMAIL}`;
+      mailBtn.hidden = false;
+    }
+
     const note = document.querySelector(".legal-note");
     if (note) note.hidden = !t["legal.note"];
 
@@ -98,13 +129,8 @@
     if (timeline) {
       timeline.innerHTML = t.timeline
         .map(([year, title, text, ids]) => {
-          const covers = (ids || []).map((id) => {
-            const r = RELEASES.find((x) => x.id === id);
-            return `<a class="tl-cover" href="musik.html?lang=${lang}#${id}" title="${r.title} – ${t["history.toMusic"]}">
-              <img src="${r.cover}" alt="${r.title}" loading="lazy"><span>${r.title}</span></a>`;
-          }).join("");
-          const more = covers
-            ? `<div class="tl-covers">${covers}</div><a class="tl-link" href="musik.html?lang=${lang}#${ids[0]}">${t["history.toMusic"]} →</a>`
+          const more = ids && ids.length
+            ? `<a class="tl-link" href="musik.html?lang=${lang}#${ids[0]}">${t["history.toMusic"]} →</a>`
             : "";
           return `<li><span class="tl-year">${year}</span><div><h3>${title}</h3><p>${text}</p>${more}</div></li>`;
         })
@@ -129,7 +155,7 @@
       if (r.spotify) {
         const [kind, sid] = r.spotify;
         actions = `
-          <button type="button" class="btn embed-consent embed-consent--inline" data-embed="https://open.spotify.com/embed/${kind}/${sid}?theme=0" data-height="152" data-title="${r.title}">▶ ${t["music.preview"]}</button>
+          <button type="button" class="btn embed-consent--inline" data-spotify="spotify:${kind}:${sid}">▶ ${t["music.preview"]}</button>
           <a class="btn btn--spotify" href="https://open.spotify.com/${kind}/${sid}" target="_blank" rel="noopener">${t["music.onSpotify"]}</a>`;
       } else if (r.link) {
         actions = `<a class="btn" href="${r.link}" target="_blank" rel="noopener">${r.linkName}</a>`;
@@ -203,33 +229,26 @@
   document.querySelectorAll(".video").forEach((fig) => {
     fig.querySelector(".video-consent").addEventListener("click", () => {
       const iframe = document.createElement("iframe");
-      iframe.src = `https://www.youtube-nocookie.com/embed/${fig.dataset.yt}?autoplay=1`;
+      iframe.src = `https://www.youtube-nocookie.com/embed/${fig.dataset.yt}?autoplay=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}`;
       iframe.title = fig.dataset.title || fig.querySelector("figcaption").textContent.split(" · ")[0].trim();
       iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       iframe.allowFullscreen = true;
+      YCMedia.youtube(iframe);
       fig.querySelector(".video-consent").replaceWith(iframe);
     });
   });
 
-  // Spotify-Player wird erst nach Klick geladen (Datenschutz)
+  // Spotify-Hörprobe wird erst nach Klick geladen (Datenschutz)
   document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".embed-consent");
+    const btn = e.target.closest("[data-spotify]");
     if (!btn) return;
-    const iframe = document.createElement("iframe");
-    iframe.src = btn.dataset.embed;
-    iframe.title = btn.dataset.title || "Spotify";
-    iframe.height = btn.dataset.height;
-    iframe.className = "embed";
-    iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
-    iframe.loading = "lazy";
     const actions = btn.closest(".record-actions");
-    if (actions) {
-      // Player unter den Buttons einfügen, Spotify-Link bleibt daneben sichtbar
-      btn.remove();
-      actions.after(iframe);
-    } else {
-      btn.replaceWith(iframe);
-    }
+    const slot = document.createElement("div");
+    slot.className = "embed-slot";
+    // Player unter den Buttons einfügen, Spotify-Link bleibt daneben sichtbar
+    actions.after(slot);
+    btn.remove();
+    YCMedia.spotify(slot, btn.dataset.spotify, 152);
   });
 
   renderLayout();

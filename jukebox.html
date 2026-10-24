@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jukebox – Yalta Club</title>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="jukebox.css">
+</head>
+<body data-page="jukebox" class="jb-page">
+
+<main class="jb-wrap">
+  <div class="jb-machine" id="jukebox">
+    <div class="jb-arch">
+      <div class="jb-tubes" aria-hidden="true"></div>
+      <p class="jb-brand">Yalta Club</p>
+      <p class="jb-name">Jukebox</p>
+    </div>
+
+    <div class="jb-window">
+      <div class="jb-record" id="jb-record" aria-hidden="true">
+        <img id="jb-label" src="assets/le-temps-perdu-600.jpg" alt="">
+      </div>
+      <div class="jb-now">
+        <p class="jb-now-label" data-i18n="jb.nowPlaying"></p>
+        <p class="jb-now-title" id="jb-now-title" data-i18n="jb.choose"></p>
+      </div>
+    </div>
+
+    <ol class="jb-cards" id="jb-cards"></ol>
+
+    <div class="jb-controls">
+      <button type="button" class="jb-key" id="jb-prev" data-i18n-label="jb.prev">⏮</button>
+      <button type="button" class="jb-key jb-key--big" id="jb-play" data-i18n-label="jb.play">▶</button>
+      <button type="button" class="jb-key" id="jb-next" data-i18n-label="jb.next">⏭</button>
+    </div>
+
+    <div class="jb-grille">
+      <div class="jb-coin" id="jb-coin">
+        <button type="button" class="jb-coin-btn" id="jb-insert">
+          <span class="jb-slot" aria-hidden="true"></span>
+          <span data-i18n="jb.insert"></span>
+        </button>
+        <small data-i18n="jb.insertNote"></small>
+      </div>
+      <div class="jb-player" id="jb-player" hidden><div id="jb-embed"></div></div>
+    </div>
+  </div>
+
+  <p class="jb-footer">
+    <a href="datenschutz.html" data-nav data-i18n="legal.privacy"></a>
+  </p>
+</main>
+
+<script src="i18n.js"></script>
+<script src="media.js"></script>
+<script src="script.js"></script>
+<script src="jukebox.js"></script>
+</body>
+</html>

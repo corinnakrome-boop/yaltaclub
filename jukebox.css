@@ -1,0 +1,234 @@
+/* Jukebox – Retro-Musikbox in den Farben des Albumcovers */
+.jb-page { min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; }
+.jb-wrap { width: 100%; max-width: 440px; padding: 20px 14px 12px; margin: 0 auto; }
+
+.jb-machine {
+  position: relative;
+  padding: 0 18px 18px;
+  border-radius: 210px 210px 22px 22px;
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgba(232, 217, 181, 0.10), transparent 60%),
+    linear-gradient(180deg, #2a1712 0%, #1a0f0c 55%, #120a08 100%);
+  box-shadow:
+    inset 0 0 0 3px #3b231a,
+    inset 0 0 0 7px #120a08,
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(200, 38, 29, 0.18);
+}
+
+/* Leuchtröhren im Bogen */
+.jb-arch { position: relative; text-align: center; padding: 70px 20px 34px; margin: 0 -8px 14px; }
+.jb-tubes {
+  position: absolute;
+  inset: 10px 10px 0 10px;
+  border-radius: 200px 200px 0 0;
+  padding: 7px;
+  background: linear-gradient(90deg, var(--ember), #f2b544, var(--sand), #f2b544, var(--ember));
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  filter: drop-shadow(0 0 8px rgba(242, 181, 68, 0.7));
+  animation: jb-glow 6s linear infinite;
+  opacity: 0.85;
+}
+.jb-on .jb-tubes { animation-duration: 2.5s; opacity: 1; }
+@keyframes jb-glow { to { background-position: 300% 0; } }
+
+.jb-brand {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.jb-name {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 54px;
+  line-height: 1.05;
+  color: #f6dfa6;
+  text-shadow: 0 0 18px rgba(242, 181, 68, 0.55), 0 0 2px #fff3cf;
+}
+
+/* Fenster mit Schallplatte */
+.jb-window {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #0c1615, #12201e);
+  box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.8), 0 0 0 2px #3b231a;
+}
+.jb-record {
+  flex: none;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle, transparent 0 30%, rgba(255,255,255,0.06) 31%, transparent 32%),
+    repeating-radial-gradient(circle, #111 0 2px, #1c1c1c 2px 3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+}
+.jb-record img { width: 44%; height: 44%; border-radius: 50%; object-fit: cover; }
+.jb-record.is-spinning { animation: jb-spin 3s linear infinite; }
+@keyframes jb-spin { to { transform: rotate(360deg); } }
+.jb-now { min-width: 0; }
+.jb-now-label { margin: 0; font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ember-soft); }
+.jb-now-title { margin: 4px 0 0; font-family: var(--serif); font-size: 21px; line-height: 1.2; color: var(--paper); }
+
+/* Titelkarten */
+.jb-cards {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  border-radius: 10px;
+  background: #e8d9b5;
+  box-shadow: inset 0 0 0 2px #b79c63, 0 0 0 3px #3b231a;
+}
+.jb-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  align-items: center;
+  text-align: left;
+  padding: 7px 8px;
+  border: 1px solid #c9b07a;
+  border-radius: 4px;
+  background: #f6ecd2;
+  color: #2a1712;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.jb-card:hover { background: #fff6df; }
+.jb-card:active { transform: scale(0.98); }
+.jb-card.is-active { background: var(--ember); border-color: var(--ember); color: #fff; }
+.jb-code {
+  grid-row: span 2;
+  font-weight: 500;
+  font-size: 13px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  background: #2a1712;
+  color: #f6dfa6;
+}
+.jb-card.is-active .jb-code { background: #fff; color: var(--ember); }
+.jb-title { font-family: var(--serif); font-size: 16px; line-height: 1.1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jb-year { font-size: 11px; opacity: 0.7; }
+
+/* Tasten */
+.jb-controls { display: flex; justify-content: center; gap: 14px; margin: 18px 0 14px; }
+.jb-key {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 0;
+  font-size: 18px;
+  color: #2a1712;
+  cursor: pointer;
+  background: radial-gradient(circle at 35% 30%, #fff6df, #d9c08a 60%, #a8874e);
+  box-shadow: 0 4px 0 #6b5230, 0 6px 14px rgba(0, 0, 0, 0.5);
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.jb-key:active { transform: translateY(3px); box-shadow: 0 1px 0 #6b5230, 0 2px 6px rgba(0, 0, 0, 0.5); }
+.jb-key--big {
+  width: 66px;
+  height: 66px;
+  font-size: 24px;
+  color: #fff;
+  background: radial-gradient(circle at 35% 30%, #ff7a5c, var(--ember) 60%, #7d140f);
+  box-shadow: 0 4px 0 #5a0e0a, 0 6px 18px rgba(200, 38, 29, 0.6);
+}
+
+/* Lautsprechergitter mit Münzschlitz und Player */
+.jb-grille {
+  border-radius: 12px;
+  padding: 14px;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.55) 0 3px, transparent 3px 9px),
+    linear-gradient(180deg, #3b231a, #22140f);
+  box-shadow: inset 0 0 0 2px #120a08;
+}
+.jb-coin { text-align: center; }
+.jb-coin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #f2b544;
+  background: rgba(18, 10, 8, 0.85);
+  color: #f6dfa6;
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(242, 181, 68, 0.35);
+}
+.jb-coin-btn:hover { background: #2a1712; }
+.jb-slot { width: 4px; height: 22px; border-radius: 2px; background: #000; box-shadow: 0 0 0 2px #b79c63; }
+.jb-coin small { display: block; margin-top: 8px; font-size: 11px; color: var(--muted); background: rgba(18,10,8,0.7); padding: 2px 6px; border-radius: 4px; }
+.jb-player iframe { display: block; width: 100%; border: 0; border-radius: 10px; }
+
+.jb-footer { text-align: center; font-size: 12px; margin: 10px 0 0; }
+.jb-footer a { color: var(--muted); }
+
+/* Eingebettet auf der Musik-Seite */
+.jukebox-frame { display: block; width: 100%; max-width: 460px; height: 900px; margin: 8px auto 0; border: 0; }
+
+/* Jukebox-Knopf auf jeder Seite */
+.jb-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 66px;
+  height: 84px;
+  padding: 0 0 10px;
+  border: 0;
+  border-radius: 33px 33px 10px 10px;
+  cursor: pointer;
+  color: #f6dfa6;
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #2a1712, #120a08);
+  box-shadow: inset 0 0 0 2px #3b231a, 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 22px rgba(242, 181, 68, 0.35);
+  transition: transform 0.15s;
+}
+.jb-fab:hover { transform: translateY(-3px); }
+.jb-fab::before {
+  content: "";
+  position: absolute;
+  inset: 5px 5px auto 5px;
+  height: 40px;
+  border-radius: 30px 30px 0 0;
+  border: 3px solid transparent;
+  border-bottom: 0;
+  background: linear-gradient(90deg, var(--ember), #f2b544, var(--sand), #f2b544, var(--ember)) border-box;
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
+  animation: jb-glow 6s linear infinite;
+}
+.jb-fab .jb-fab-note { font-size: 22px; line-height: 1; margin-bottom: 4px; text-shadow: 0 0 10px rgba(242, 181, 68, 0.8); }
+
+@media (prefers-reduced-motion: reduce) {
+  .jb-tubes, .jb-fab::before, .jb-record.is-spinning { animation: none; }
+}

@@ -11,6 +11,7 @@
   <link rel="icon" href="assets/favicon.png">
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="jukebox.css">
 </head>
 <body data-page="musik">
 
@@ -30,13 +31,7 @@
   <section class="section" id="jukebox">
     <h2 data-i18n="music.jukebox"></h2>
     <p class="lead" data-i18n="music.jukeboxLead"></p>
-    <div class="jukebox">
-      <button type="button" class="embed-consent embed-consent--jukebox" data-embed="https://open.spotify.com/embed/artist/6KKPXN1bAOsrFKvQJ842DJ?theme=0" data-height="452" data-title="Yalta Club Jukebox">
-        <span class="play" aria-hidden="true">▶</span>
-        <span data-i18n="music.jukeboxLoad"></span>
-        <small data-i18n="music.spotifyNote"></small>
-      </button>
-    </div>
+    <iframe class="jukebox-frame" src="jukebox.html" title="Yalta Club Jukebox" id="jukebox-frame"></iframe>
 
     <h2 class="sub" data-i18n="music.listen"></h2>
     <div class="stream-links">
@@ -51,6 +46,7 @@
 <div id="site-footer"></div>
 
 <script src="i18n.js"></script>
+<script src="media.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
