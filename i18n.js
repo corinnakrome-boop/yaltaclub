@@ -109,6 +109,7 @@ const I18N = {
     "music.jukeboxLead": "Die Songs von Yalta Club zum Durchhören.",
     "music.jukeboxLoad": "Jukebox laden",
     "history.toMusic": "Anhören",
+    "videos.onYoutube": "Auf YouTube ansehen",
     bio: [
       "<h3>Yalta Club – Le temps perdu</h3>",
       "<p>Mal ehrlich: Wer von euch erinnert sich noch an den Sommer 2013? Daft Punk brachten <em>Random Access Memories</em> heraus, alle trugen runde Brillen, und fünf junge Leute zwischen Paris und Berlin standen im Hamburger Molotow, mit einer EP namens <em>Highly Branded</em>, einer Ukulele, einer Melodica und der Selbstsicherheit all jener, die glauben, Musik könne die Welt retten. Oder wenigstens einen Abend.</p>",
@@ -205,6 +206,7 @@ const I18N = {
     "music.jukeboxLead": "Listen through the songs of Yalta Club.",
     "music.jukeboxLoad": "Load jukebox",
     "history.toMusic": "Listen",
+    "videos.onYoutube": "Watch on YouTube",
     bio: [
       "<h3>Yalta Club – Le temps perdu</h3>",
       "<p>Let’s be honest: who among you still remembers the summer of 2013? Daft Punk released <em>Random Access Memories</em>, everyone wore round glasses, and five young people from somewhere between Paris and Berlin turned up at the Molotow in Hamburg with an EP called <em>Highly Branded</em>, a ukulele, a melodica and the nerve of those who believe music can save the world. Or at least a night.</p>",
@@ -301,6 +303,7 @@ const I18N = {
     "music.jukeboxLead": "Les chansons de Yalta Club, à écouter à la suite.",
     "music.jukeboxLoad": "Charger la jukebox",
     "history.toMusic": "Écouter",
+    "videos.onYoutube": "Voir sur YouTube",
     bio: [
       "<h3>Yalta Club – Le temps perdu</h3>",
       "<p>Soyons honnêtes : qui, parmi vous, se souvient encore de l’été 2013 ? Daft Punk sortait <em>Random Access Memories</em>, tout le monde portait des lunettes rondes, et cinq jeunes gens entre Paris et Berlin débarquaient au Molotow de Hambourg avec un EP intitulé <em>Highly Branded</em>, un ukulélé, un mélodica et l’aplomb de ceux et celles qui pensent que la musique peut sauver le monde. Ou au moins une soirée.</p>",

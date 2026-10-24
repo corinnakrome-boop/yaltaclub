@@ -74,6 +74,20 @@
       a.setAttribute("href", `${file}?lang=${lang}`);
     });
 
+    // Direktlink zu YouTube unter jedem Video, falls der eingebettete Player nicht lädt
+    document.querySelectorAll(".video").forEach((fig) => {
+      let a = fig.querySelector(".yt-link");
+      if (!a) {
+        a = document.createElement("a");
+        a.className = "yt-link";
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.href = `https://www.youtube.com/watch?v=${fig.dataset.yt}`;
+        fig.querySelector("figcaption").append(" · ", a);
+      }
+      a.textContent = t["videos.onYoutube"];
+    });
+
     const note = document.querySelector(".legal-note");
     if (note) note.hidden = !t["legal.note"];
 
@@ -175,7 +189,7 @@
     fig.querySelector(".video-consent").addEventListener("click", () => {
       const iframe = document.createElement("iframe");
       iframe.src = `https://www.youtube-nocookie.com/embed/${fig.dataset.yt}?autoplay=1`;
-      iframe.title = fig.querySelector("figcaption").textContent;
+      iframe.title = fig.querySelector("figcaption").firstChild.textContent.trim();
       iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       iframe.allowFullscreen = true;
       fig.querySelector(".video-consent").replaceWith(iframe);

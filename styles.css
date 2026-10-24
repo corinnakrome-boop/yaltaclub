@@ -399,6 +399,7 @@ h2.sub {
 .members .btn { margin-top: 20px; }
 
 .home-video { max-width: 900px; }
+.yt-link { color: var(--sand); }
 
 /* Rechtliches */
 .footer-links { margin: 16px 0 8px !important; display: flex; gap: 20px; justify-content: center; }
