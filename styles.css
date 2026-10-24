@@ -400,6 +400,8 @@ h2.sub {
 
 .home-video { max-width: 900px; }
 .yt-link { color: var(--sand); }
+.video-title { font-family: var(--serif); font-style: italic; font-size: 24px; color: var(--sand); padding: 0 16px; text-align: center; }
+.video-year { color: var(--ember-soft); margin-right: 6px; }
 
 /* Rechtliches */
 .footer-links { margin: 16px 0 8px !important; display: flex; gap: 20px; justify-content: center; }

@@ -39,6 +39,21 @@ const RELEASES = [
     spotify: ["track", "1Nq6BjqhbRjGeZgByIsqKo"] },
 ];
 
+// Videos, chronologisch (älteste zuerst). id = YouTube-ID aus der Adresse ...watch?v=ID
+const VIDEOS = [
+  { id: "JShMySnrSSE", date: "2012-10-22", title: "Highly Branded (Official Music Video)" },
+  { id: "eSMjPSPfDWg", date: "2013-09-30", title: "What's Comin' After (Official Music Video)" },
+  { id: "3irQ-eAcLe4", date: "2015-11-17", title: "Wasting My Time (Official Music Video)" },
+  { id: "7BQYr9T5jyw", date: "2016-06-01", title: "LOVE (Official Lyric Video)" },
+  { id: "uN1JCwR1mNU", date: "2016-06-23", title: "Exile (Official Music Video)" },
+  { id: "1iE33t6Fu88", date: "2016-09-12", title: "New EP MIDAS" },
+  { id: "Y7LZoE3zpw8", date: "2016-11-24", title: "Stars (Official Lyric Video)" },
+  { id: "RA5y9vXEVt8", date: "2017-01-06", title: "Of Mice And Gods (Official Video)" },
+  { id: "khE9GmS1rRY", date: "2018-05-04", title: "New Day (Official Video)" },
+  { id: "6mRu1vypNZs", date: "2022-06-19", title: "Presenting Yalta Club", by: "Studio X Berlin" },
+  { id: "TW1B0Mh2kw8", date: "2024-04-10", title: "Presenting Yalta Club", by: "Studio X Berlin" },
+];
+
 const I18N = {
   de: {
     "nav.music": "Musik",

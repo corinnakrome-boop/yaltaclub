@@ -184,12 +184,27 @@
     return true;
   }
 
+  // Videoliste (Seite „Videos“) aus VIDEOS in i18n.js
+  const videoList = document.getElementById("video-list");
+  if (videoList) {
+    videoList.innerHTML = VIDEOS.map((v) => `
+      <figure class="video" data-yt="${v.id}" data-title="${v.title}">
+        <button type="button" class="video-consent">
+          <span class="play" aria-hidden="true">▶</span>
+          <span class="video-title">${v.title}</span>
+          <span data-i18n="videos.load"></span>
+          <small data-i18n="videos.note"></small>
+        </button>
+        <figcaption><span class="video-year">${v.date.slice(0, 4)}</span> ${v.title}${v.by ? " · " + v.by : ""}</figcaption>
+      </figure>`).join("");
+  }
+
   // YouTube wird erst nach Klick geladen (Datenschutz)
   document.querySelectorAll(".video").forEach((fig) => {
     fig.querySelector(".video-consent").addEventListener("click", () => {
       const iframe = document.createElement("iframe");
       iframe.src = `https://www.youtube-nocookie.com/embed/${fig.dataset.yt}?autoplay=1`;
-      iframe.title = fig.querySelector("figcaption").firstChild.textContent.trim();
+      iframe.title = fig.dataset.title || fig.querySelector("figcaption").textContent.split(" · ")[0].trim();
       iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       iframe.allowFullscreen = true;
       fig.querySelector(".video-consent").replaceWith(iframe);
