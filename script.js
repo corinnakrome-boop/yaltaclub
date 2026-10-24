@@ -3,6 +3,16 @@
   // Release: 14.12.2026, 00:00 Uhr Berliner Zeit
   const RELEASE = new Date("2026-12-14T00:00:00+01:00");
 
+  // Menü: Dateiname der Seite → Text-Schlüssel in i18n.js
+  const NAV = [
+    ["musik", "nav.music"],
+    ["ueber-uns", "nav.about"],
+    ["geschichte", "nav.history"],
+    ["termine", "nav.dates"],
+    ["videos", "nav.videos"],
+  ];
+
+  const page = document.body.dataset.page || "index";
   let lang = "de";
 
   function pickLang() {
@@ -14,6 +24,34 @@
     } catch (e) {}
     const nav = (navigator.language || "de").slice(0, 2).toLowerCase();
     return LANGS.includes(nav) ? nav : "en";
+  }
+
+  function renderLayout() {
+    const links = NAV.map(([slug, key]) =>
+      `<a href="${slug}.html" data-nav data-i18n="${key}"${slug === page ? ' aria-current="page"' : ""}></a>`).join("");
+
+    document.getElementById("site-header").outerHTML = `
+      <header class="site-header">
+        <a class="logo" href="index.html" data-nav>Yalta Club</a>
+        <nav class="nav">${links}</nav>
+        <div class="lang" role="group" aria-label="Sprache / Language / Langue">
+          ${LANGS.map((l) => `<button type="button" data-lang="${l}">${l.toUpperCase()}</button>`).join("")}
+        </div>
+      </header>`;
+
+    document.getElementById("site-footer").outerHTML = `
+      <footer class="site-footer">
+        <p class="footer-band">Yalta Club</p>
+        <p data-i18n="footer.welcome"></p>
+        <p class="footer-links">
+          <a href="impressum.html" data-nav data-i18n="legal.imprint"></a>
+          <a href="datenschutz.html" data-nav data-i18n="legal.privacy"></a>
+        </p>
+        <p class="small">© ${new Date().getFullYear()} Yalta Club</p>
+      </footer>`;
+
+    document.querySelectorAll(".lang button").forEach((b) =>
+      b.addEventListener("click", () => setLang(b.dataset.lang)));
   }
 
   function setLang(next) {
@@ -30,14 +68,27 @@
       if (t[key] !== undefined) el.alt = t[key];
     });
 
-    document.getElementById("bio").innerHTML = t.bio.join("");
+    // Sprache in internen Links mitgeben, damit sie beim Seitenwechsel erhalten bleibt
+    document.querySelectorAll("a[data-nav]").forEach((a) => {
+      const file = a.getAttribute("href").split("?")[0];
+      a.setAttribute("href", `${file}?lang=${lang}`);
+    });
 
-    document.getElementById("timeline").innerHTML = t.timeline
-      .map(([year, title, text]) =>
-        `<li><span class="tl-year">${year}</span><div><h3>${title}</h3><p>${text}</p></div></li>`)
-      .join("");
+    const note = document.querySelector(".legal-note");
+    if (note) note.hidden = !t["legal.note"];
 
-    renderDates();
+    const bio = document.getElementById("bio");
+    if (bio) bio.innerHTML = t.bio.join("");
+
+    const timeline = document.getElementById("timeline");
+    if (timeline) {
+      timeline.innerHTML = t.timeline
+        .map(([year, title, text]) =>
+          `<li><span class="tl-year">${year}</span><div><h3>${title}</h3><p>${text}</p></div></li>`)
+        .join("");
+    }
+
+    if (document.getElementById("dates")) renderDates();
 
     document.querySelectorAll(".lang button").forEach((b) =>
       b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
@@ -92,13 +143,10 @@
     });
   });
 
-  document.querySelectorAll(".lang button").forEach((b) =>
-    b.addEventListener("click", () => setLang(b.dataset.lang)));
-
-  document.getElementById("year").textContent = new Date().getFullYear();
-
+  renderLayout();
   setLang(pickLang());
-  if (tick()) {
+
+  if (document.getElementById("countdown") && tick()) {
     const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
   }
 })();

@@ -3,6 +3,12 @@
 Website der Band Yalta Club, auf Deutsch, Englisch und Französisch.
 Reines HTML/CSS/JavaScript, kein Build nötig.
 
+## Seiten
+
+`index.html` (Start mit Countdown), `musik.html`, `ueber-uns.html`, `geschichte.html`,
+`termine.html`, `videos.html`, `impressum.html`, `datenschutz.html`.
+Menü und Fußzeile kommen für alle Seiten aus `script.js`.
+
 ## Inhalte ändern
 
 - **Texte, Bio, Geschichte:** `i18n.js` (je Sprache `de`, `en`, `fr`)
@@ -11,6 +17,8 @@ Reines HTML/CSS/JavaScript, kein Build nötig.
   Vergangene Termine werden automatisch ausgeblendet.
 - **Release-Datum für den Countdown:** `RELEASE` in `script.js`
 - **Bilder:** Ordner `assets/`
+- **Impressum / Datenschutz:** die rot markierten Platzhalter `[...]` in `impressum.html` und `datenschutz.html` ausfüllen
+- **Schriften** liegen lokal in `assets/fonts/` (keine Verbindung zu Google Fonts)
 
 ## Lokal ansehen
 
