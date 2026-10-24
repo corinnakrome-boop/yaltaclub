@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yalta Club – Le temps perdu</title>
+  <meta name="description" content="Yalta Club – Indie-Pop zwischen Paris und Berlin. Das dritte Album „Le temps perdu“ erscheint am 14.12.2026.">
+  <meta property="og:title" content="Yalta Club – Le temps perdu">
+  <meta property="og:description" content="Le temps perdu – 14.12.2026">
+  <meta property="og:image" content="assets/le-temps-perdu.jpg">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="#top">Yalta Club</a>
+  <nav class="nav" aria-label="Hauptmenü">
+    <a href="#musik" data-i18n="nav.music">Musik</a>
+    <a href="#ueber-uns" data-i18n="nav.about">Über uns</a>
+    <a href="#geschichte" data-i18n="nav.history">Geschichte</a>
+    <a href="#termine" data-i18n="nav.dates">Termine</a>
+    <a href="#videos" data-i18n="nav.videos">Videos</a>
+  </nav>
+  <div class="lang" role="group" aria-label="Sprache / Language / Langue">
+    <button type="button" data-lang="de">DE</button>
+    <button type="button" data-lang="en">EN</button>
+    <button type="button" data-lang="fr">FR</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero mit Countdown -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <img class="hero-cover" src="assets/le-temps-perdu-600.jpg" srcset="assets/le-temps-perdu-600.jpg 600w, assets/le-temps-perdu.jpg 1200w" sizes="(max-width: 700px) 70vw, 380px" alt="Albumcover: Yalta Club – Le temps perdu" data-i18n-alt="hero.coverAlt">
+      <div class="hero-text">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Das neue Album</p>
+        <h1><span class="band">Yalta Club</span><span class="album">le temps perdu</span></h1>
+        <p class="release" data-i18n="hero.release">Erscheint am 14. Dezember 2026</p>
+
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div><span id="cd-days">--</span><small data-i18n="cd.days">Tage</small></div>
+          <div><span id="cd-hours">--</span><small data-i18n="cd.hours">Stunden</small></div>
+          <div><span id="cd-minutes">--</span><small data-i18n="cd.minutes">Minuten</small></div>
+          <div><span id="cd-seconds">--</span><small data-i18n="cd.seconds">Sekunden</small></div>
+        </div>
+        <p class="released" id="released" hidden data-i18n="cd.released">Jetzt erhältlich. Willkommen (wieder) im Club.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Musik -->
+  <section id="musik" class="section">
+    <h2 data-i18n="music.title">Musik</h2>
+    <p class="lead" data-i18n="music.lead">Drei Alben, zwei EPs, über 700.000 Streams. Und ein neues Kapitel.</p>
+
+    <div class="records">
+      <article class="record record--new">
+        <img src="assets/le-temps-perdu-600.jpg" alt="Le temps perdu" loading="lazy">
+        <div>
+          <p class="record-meta">2026 · <span data-i18n="music.album">Album</span></p>
+          <h3>Le temps perdu</h3>
+          <p data-i18n="music.ltp">Aufgenommen in der Wiesenburg in Berlin, mit Dirk Feistel an den Reglern. Ohne Zeitplan, ohne Eile, unter Freunden.</p>
+          <p class="record-date" data-i18n="music.ltpDate">Ab 14.12.2026</p>
+        </div>
+      </article>
+      <article class="record">
+        <div class="record-ph" aria-hidden="true">H</div>
+        <div>
+          <p class="record-meta">2017 · <span data-i18n="music.album">Album</span> · Radicalis</p>
+          <h3>Hybris</h3>
+          <p data-i18n="music.hybris">Mit der Single „Stars“. Ein goldenes Königreich, das unter seiner eigenen Maßlosigkeit zusammenbricht.</p>
+        </div>
+      </article>
+      <article class="record">
+        <div class="record-ph" aria-hidden="true">M</div>
+        <div>
+          <p class="record-meta">2016 · EP · Radicalis</p>
+          <h3>Midas</h3>
+          <p data-i18n="music.midas">Mit der Single „Love“, dem meistgestreamten Song der Band.</p>
+        </div>
+      </article>
+      <article class="record">
+        <div class="record-ph" aria-hidden="true">Y</div>
+        <div>
+          <p class="record-meta">2013 · <span data-i18n="music.album">Album</span> · Atmosphériques</p>
+          <h3>Yalta Club</h3>
+          <p data-i18n="music.debut">Das Debütalbum, das die Band von Paris und Berlin bis nach Mexiko brachte.</p>
+        </div>
+      </article>
+      <article class="record">
+        <div class="record-ph" aria-hidden="true">HB</div>
+        <div>
+          <p class="record-meta">2012 · EP · Atmosphériques</p>
+          <h3>Highly Branded</h3>
+          <p data-i18n="music.hb">Die erste EP. Ukulele, Melodica und der Glaube, dass Musik die Welt retten kann.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="stream-links">
+      <a class="btn" href="https://open.spotify.com/search/Yalta%20Club" target="_blank" rel="noopener">Spotify</a>
+      <a class="btn" href="https://music.apple.com/search?term=Yalta%20Club" target="_blank" rel="noopener">Apple Music</a>
+      <a class="btn" href="https://www.deezer.com/search/Yalta%20Club" target="_blank" rel="noopener">Deezer</a>
+      <a class="btn" href="https://www.youtube.com/results?search_query=Yalta+Club" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </section>
+
+  <!-- Über uns -->
+  <section id="ueber-uns" class="section section--about">
+    <h2 data-i18n="about.title">Über uns</h2>
+    <div class="about-grid">
+      <div class="bio" id="bio"></div>
+      <aside class="members">
+        <h3 data-i18n="about.members">Die Band</h3>
+        <ul>
+          <li><strong>Coco</strong> <span data-i18n="m.coco">Gesang, Keys, Maschinen, Mundharmonika, Tuba</span></li>
+          <li><strong>Geff</strong> <span data-i18n="m.geff">Gesang, Ukulele, Gitarre</span></li>
+          <li><strong>Tom</strong> <span data-i18n="m.tom">Trompete, Gitarre, Keys, Gesang</span></li>
+          <li><strong>Nico</strong> <span data-i18n="m.nico">Bass, Gesang</span></li>
+          <li><strong>Séb</strong> <span data-i18n="m.seb">Schlagzeug, Percussion, Gesang</span></li>
+        </ul>
+        <p class="facts" data-i18n="about.facts">Paris · Berlin<br>Seit 2011<br>300+ Konzerte<br>700.000+ Streams</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Geschichte -->
+  <section id="geschichte" class="section">
+    <h2 data-i18n="history.title">Geschichte</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+  <!-- Termine -->
+  <section id="termine" class="section">
+    <h2 data-i18n="dates.title">Termine</h2>
+    <ul class="dates" id="dates"></ul>
+    <p class="dates-empty" id="dates-empty" hidden data-i18n="dates.empty">Neue Konzerttermine werden bald bekanntgegeben.</p>
+    <div class="past">
+      <h3 data-i18n="dates.pastTitle">Auf der Bühne bisher</h3>
+      <p data-i18n="dates.past">Über 300 Konzerte zwischen 2013 und 2019 in Deutschland, Frankreich, Österreich, der Schweiz, der Slowakei, Ungarn und Mexiko.</p>
+      <p class="tags">Reeperbahn Festival · Fusion · Lakeside Festival · Zermatt Unplugged · Blue Balls · FM4 Festival · Nürnberg Pop · Bataclan · Café de la Danse · Flèche d'Or · Molotow · Moritzbastei · Schlachthof · Kranhalle</p>
+    </div>
+  </section>
+
+  <!-- Videos -->
+  <section id="videos" class="section">
+    <h2 data-i18n="videos.title">Videos</h2>
+    <div class="videos">
+      <figure class="video" data-yt="TW1B0Mh2kw8">
+        <button type="button" class="video-consent">
+          <span class="play" aria-hidden="true">▶</span>
+          <span data-i18n="videos.load">Video laden</span>
+          <small data-i18n="videos.note">Beim Abspielen werden Daten an YouTube übertragen.</small>
+        </button>
+        <figcaption>This is Yalta Club</figcaption>
+      </figure>
+      <figure class="video" data-yt="6mRu1vypNZs">
+        <button type="button" class="video-consent">
+          <span class="play" aria-hidden="true">▶</span>
+          <span data-i18n="videos.load">Video laden</span>
+          <small data-i18n="videos.note">Beim Abspielen werden Daten an YouTube übertragen.</small>
+        </button>
+        <figcaption>Presenting Yalta Club · Studio X Berlin</figcaption>
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p class="footer-band">Yalta Club</p>
+  <p data-i18n="footer.welcome">Willkommen (wieder) im Club.</p>
+  <p class="small">© <span id="year">2026</span> Yalta Club</p>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
