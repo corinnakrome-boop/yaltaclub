@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Musik – Yalta Club</title>
+  <meta name="description" content="Yalta Club – Indie-Pop zwischen Paris und Berlin. Das dritte Album „Le temps perdu“ erscheint am 14.12.2026.">
+  <meta property="og:title" content="Yalta Club – Le temps perdu">
+  <meta property="og:description" content="Le temps perdu – 14.12.2026">
+  <meta property="og:image" content="assets/le-temps-perdu.jpg">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="jukebox.css">
+</head>
+<body data-page="musik">
+
+<div id="site-header"></div>
+
+<main>
+  <header class="page-head">
+    <p class="eyebrow">Yalta Club</p>
+    <h1 data-i18n="music.title"></h1>
+    <p class="lead" data-i18n="music.lead"></p>
+  </header>
+
+  <section class="section">
+    <div class="records" id="records"></div>
+  </section>
+
+  <section class="section" id="jukebox">
+    <h2 data-i18n="music.jukebox"></h2>
+    <p class="lead" data-i18n="music.jukeboxLead"></p>
+    <iframe class="jukebox-frame" src="jukebox.html" title="Yalta Club Jukebox" id="jukebox-frame"></iframe>
+
+    <h2 class="sub" data-i18n="music.listen"></h2>
+    <div class="stream-links">
+      <a class="btn" href="https://open.spotify.com/artist/6KKPXN1bAOsrFKvQJ842DJ" target="_blank" rel="noopener">Spotify</a>
+      <a class="btn" href="https://www.deezer.com/artist/4022805" target="_blank" rel="noopener">Deezer</a>
+      <a class="btn" href="https://music.apple.com/search?term=Yalta%20Club" target="_blank" rel="noopener">Apple Music</a>
+      <a class="btn" href="https://www.youtube.com/results?search_query=Yalta+Club" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="i18n.js"></script>
+<script src="media.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

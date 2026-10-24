@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yalta Club – Le temps perdu</title>
+  <meta name="description" content="Yalta Club – Indie-Pop zwischen Paris und Berlin. Das dritte Album „Le temps perdu“ erscheint am 14.12.2026.">
+  <meta property="og:title" content="Yalta Club – Le temps perdu">
+  <meta property="og:description" content="Le temps perdu – 14.12.2026">
+  <meta property="og:image" content="assets/le-temps-perdu.jpg">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="jukebox.css">
+</head>
+<body data-page="index">
+
+<div id="site-header"></div>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <img class="hero-cover" src="assets/le-temps-perdu-600.jpg" srcset="assets/le-temps-perdu-600.jpg 600w, assets/le-temps-perdu.jpg 1200w" sizes="(max-width: 700px) 70vw, 380px" alt="Albumcover: Yalta Club – Le temps perdu" data-i18n-alt="hero.coverAlt">
+      <div class="hero-text">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Das neue Album</p>
+        <h1><span class="band">Yalta Club</span><span class="album">le temps perdu</span></h1>
+        <p class="release" data-i18n="hero.release">Erscheint am 14. Dezember 2026</p>
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div><span id="cd-days">--</span><small data-i18n="cd.days">Tage</small></div>
+          <div><span id="cd-hours">--</span><small data-i18n="cd.hours">Stunden</small></div>
+          <div><span id="cd-minutes">--</span><small data-i18n="cd.minutes">Minuten</small></div>
+          <div><span id="cd-seconds">--</span><small data-i18n="cd.seconds">Sekunden</small></div>
+        </div>
+        <p class="released" id="released" hidden data-i18n="cd.released">Jetzt erhältlich. Willkommen (wieder) im Club.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section intro">
+    <p class="intro-quote" data-i18n="home.quote"></p>
+    <p class="intro-text" data-i18n="home.intro"></p>
+    <a class="btn" href="ueber-uns.html" data-nav data-i18n="home.more"></a>
+  </section>
+
+  <section class="section home-video">
+    <figure class="video" data-yt="6mRu1vypNZs">
+      <button type="button" class="video-consent">
+        <span class="play" aria-hidden="true">▶</span>
+        <span data-i18n="videos.load"></span>
+        <small data-i18n="videos.note"></small>
+      </button>
+      <figcaption>Presenting Yalta Club · Studio X Berlin · 2022</figcaption>
+    </figure>
+  </section>
+
+  <section class="section teasers">
+    <a class="teaser" href="musik.html" data-nav>
+      <span class="teaser-label" data-i18n="nav.music"></span>
+      <span class="teaser-text" data-i18n="home.tMusic"></span>
+    </a>
+    <a class="teaser" href="geschichte.html" data-nav>
+      <span class="teaser-label" data-i18n="nav.history"></span>
+      <span class="teaser-text" data-i18n="home.tHistory"></span>
+    </a>
+    <a class="teaser" href="termine.html" data-nav>
+      <span class="teaser-label" data-i18n="nav.dates"></span>
+      <span class="teaser-text" data-i18n="home.tDates"></span>
+    </a>
+    <a class="teaser" href="videos.html" data-nav>
+      <span class="teaser-label" data-i18n="nav.videos"></span>
+      <span class="teaser-text" data-i18n="home.tVideos"></span>
+    </a>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="i18n.js"></script>
+<script src="media.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
