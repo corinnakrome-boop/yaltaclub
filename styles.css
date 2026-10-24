@@ -398,6 +398,8 @@ h2.sub {
 .teaser-text { color: var(--muted); font-size: 15px; }
 .members .btn { margin-top: 20px; }
 
+.home-video { max-width: 900px; }
+
 /* Rechtliches */
 .footer-links { margin: 16px 0 8px !important; display: flex; gap: 20px; justify-content: center; }
 .footer-links a { color: var(--muted); font-size: 14px; }
