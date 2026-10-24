@@ -12,6 +12,7 @@ Menü und Fußzeile kommen für alle Seiten aus `script.js`.
 ## Inhalte ändern
 
 - **Texte, Bio, Geschichte:** `i18n.js` (je Sprache `de`, `en`, `fr`)
+- **Releases, Cover, Hörproben:** `RELEASES` oben in `i18n.js` (Spotify-ID aus der Spotify-Adresse)
 - **Konzerttermine:** oben in `i18n.js` unter `CONCERTS` eintragen, z. B.
   `{ date: "2026-12-14", city: "Berlin", venue: "Wiesenburg", ticket: "https://..." }`.
   Vergangene Termine werden automatisch ausgeblendet.

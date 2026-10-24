@@ -83,10 +83,22 @@
     const timeline = document.getElementById("timeline");
     if (timeline) {
       timeline.innerHTML = t.timeline
-        .map(([year, title, text]) =>
-          `<li><span class="tl-year">${year}</span><div><h3>${title}</h3><p>${text}</p></div></li>`)
+        .map(([year, title, text, ids]) => {
+          const covers = (ids || []).map((id) => {
+            const r = RELEASES.find((x) => x.id === id);
+            return `<a class="tl-cover" href="musik.html?lang=${lang}#${id}" title="${r.title} – ${t["history.toMusic"]}">
+              <img src="${r.cover}" alt="${r.title}" loading="lazy"><span>${r.title}</span></a>`;
+          }).join("");
+          const more = covers
+            ? `<div class="tl-covers">${covers}</div><a class="tl-link" href="musik.html?lang=${lang}#${ids[0]}">${t["history.toMusic"]} →</a>`
+            : "";
+          return `<li><span class="tl-year">${year}</span><div><h3>${title}</h3><p>${text}</p>${more}</div></li>`;
+        })
         .join("");
     }
+
+    const records = document.getElementById("records");
+    if (records) renderRecords(records, t);
 
     if (document.getElementById("dates")) renderDates();
 
@@ -94,6 +106,33 @@
       b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
 
     try { localStorage.setItem("yc-lang", lang); } catch (e) {}
+  }
+
+  function renderRecords(el, t) {
+    el.innerHTML = RELEASES.map((r) => {
+      const meta = [r.year, t["type." + r.type], r.label].filter(Boolean).join(" · ");
+      let actions = "";
+      if (r.spotify) {
+        const [kind, sid] = r.spotify;
+        actions = `
+          <button type="button" class="btn embed-consent embed-consent--inline" data-embed="https://open.spotify.com/embed/${kind}/${sid}?theme=0" data-height="152" data-title="${r.title}">▶ ${t["music.preview"]}</button>
+          <a class="btn btn--spotify" href="https://open.spotify.com/${kind}/${sid}" target="_blank" rel="noopener">${t["music.onSpotify"]}</a>`;
+      } else if (r.link) {
+        actions = `<a class="btn" href="${r.link}" target="_blank" rel="noopener">${r.linkName}</a>`;
+      } else {
+        actions = `<p class="record-date">${t["rel.soon"]}</p>`;
+      }
+      return `<article class="record${r.id === "ltp" ? " record--new" : ""}" id="${r.id}">
+        <img src="${r.cover}" alt="${r.title}" loading="lazy">
+        <div class="record-body">
+          <p class="record-meta">${meta}</p>
+          <h3>${r.title}</h3>
+          <p>${t["rel." + r.id]}</p>
+          <div class="record-actions">${actions}</div>
+          ${r.spotify ? `<p class="record-note">${t["music.spotifyNote"]}</p>` : ""}
+        </div>
+      </article>`;
+    }).join("");
   }
 
   function renderDates() {
@@ -143,8 +182,35 @@
     });
   });
 
+  // Spotify-Player wird erst nach Klick geladen (Datenschutz)
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".embed-consent");
+    if (!btn) return;
+    const iframe = document.createElement("iframe");
+    iframe.src = btn.dataset.embed;
+    iframe.title = btn.dataset.title || "Spotify";
+    iframe.height = btn.dataset.height;
+    iframe.className = "embed";
+    iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+    iframe.loading = "lazy";
+    const actions = btn.closest(".record-actions");
+    if (actions) {
+      // Player unter den Buttons einfügen, Spotify-Link bleibt daneben sichtbar
+      btn.remove();
+      actions.after(iframe);
+    } else {
+      btn.replaceWith(iframe);
+    }
+  });
+
   renderLayout();
   setLang(pickLang());
+
+  // Sprung zu einem Release (z. B. aus der Geschichte), nachdem die Liste gerendert ist
+  if (location.hash) {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target) target.scrollIntoView();
+  }
 
   if (document.getElementById("countdown") && tick()) {
     const timer = setInterval(() => { if (!tick()) clearInterval(timer); }, 1000);
